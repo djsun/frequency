@@ -4,10 +4,11 @@ class Frequency
   
   attr_accessor :plain_text
 
-  # Source: the Macintosh built-in dictionary:
   # Notes:
   # * biweekly is ambiguous so I left it out
   # * biennially != biannually
+  #
+  # Values checked with Apple Dictionary Version 2.1.1 (80.1).
   FREQUENCIES = {
     "each second"  => 315_360_000,
     "each minute"  =>   5_256_000,
