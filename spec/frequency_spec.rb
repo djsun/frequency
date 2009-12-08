@@ -47,6 +47,24 @@ describe "Frequency" do
       @freq.should > Frequency.new('annually')
     end
   end
+
+  describe "Monthly" do
+    before do
+      @freq = Frequency.new("Monthly")
+    end
+
+    it "should be valid" do
+      @freq.plain_text.should == "monthly"
+    end
+
+    it "should be valid" do
+      @freq.valid?.should be_true
+    end
+
+    it "#per_year should be correct" do
+      @freq.per_year.should == 12.0
+    end
+  end
   
   describe "sometimes" do
     before do

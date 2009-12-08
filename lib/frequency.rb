@@ -40,7 +40,7 @@ class Frequency
   }
   
   def initialize(string)
-    self.plain_text = string
+    self.plain_text = string.downcase
   end
   
   def ==(other)
