@@ -30,6 +30,8 @@ class Frequency
     "yearly"       =>          10,
     "biennial"     =>           5,
     "biennially"   =>           5,
+    "quadrennial"  =>           2.5,
+    "quadrennially" =>          2.5,
     "decade"       =>           1,
     "one time"     =>           0,
     "one-time"     =>           0,
