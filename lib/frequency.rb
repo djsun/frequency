@@ -20,6 +20,7 @@ class Frequency
     "hourly"       =>      87_600,
     "daily"        =>       3_650,
     "weekly"       =>         520,
+    "fortnightly"  =>         260,
     "monthly"      =>         120,
     "quarterly"    =>          40,
     "biannually"   =>          20,
