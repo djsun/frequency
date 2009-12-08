@@ -66,6 +66,16 @@ describe "Frequency" do
     end
   end
   
+  describe "nil" do
+    before do
+      @freq = Frequency.new(nil)
+    end
+
+    it "should be valid" do
+      @freq.plain_text.should == ""
+    end
+  end
+  
   describe "sometimes" do
     before do
       @freq = Frequency.new("sometimes")
