@@ -84,15 +84,19 @@ class Frequency
   protected
   
   def compare_safely(method, other)
-    if self.per_decade.nil?
-      raise Undefined, %(Numerical value for "#{self.plain_text}" is undefined, ) +
-        %( therefore a comparison with "#{other.plain_text}" is impossible)
-    elsif other.per_decade.nil?
-      raise Undefined, %(Numerical value for "#{other.plain_text}" is undefined, ) +
-        %( therefore a comparison with "#{self.plain_text}" is impossible)
-    else
-      self.per_decade.send(method, other.per_decade)
+    errors = find_errors([self, other])
+    raise Undefined, errors.join(",") if !errors.empty?
+    self.per_decade.send(method, other.per_decade)
+  end
+  
+  def find_errors(objects)
+    errors = []
+    objects.each do |object|
+      if object.per_decade.nil?()
+        errors << %(Numerical value for "#{object.plain_text}" is undefined)
+      end
     end
+    errors
   end
 
 end
