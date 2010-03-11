@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{frequency}
-  s.version = "0.1.2"
+  s.version = "0.1.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["David James"]
-  s.date = %q{2009-12-08}
+  s.date = %q{2010-03-11}
   s.description = %q{Interpret strings that represent frequencies (once a day, hourly, biennially, etc.)}
   s.email = %q{djames@sunlightfoundation.com}
   s.extra_rdoc_files = [
@@ -31,7 +31,7 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://github.com/djsun/frequency}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.5}
+  s.rubygems_version = %q{1.3.6}
   s.summary = %q{Interpret and compare frequencies (such as hourly)}
   s.test_files = [
     "spec/frequency_spec.rb",
