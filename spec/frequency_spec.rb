@@ -124,6 +124,29 @@ describe "Frequency" do
     end
   end
   
+  # ---
+  
+  describe "list" do
+    it "should be correct" do
+      Frequency.list.should == [
+        "each second",
+        "each minute",
+        "hourly",
+        "daily",
+        "weekly",
+        "fortnightly",
+        "monthly",
+        "quarterly",
+        "biannually",
+        "annually",
+        "biennially",
+        "quadrennially",
+        "each decade",
+        "one time",
+        "other",
+        "unknown"
+      ]
+    end
+  end
+  
 end
-
-

@@ -10,36 +10,37 @@ class Frequency
   #
   # Values checked with Apple Dictionary Version 2.1.1 (80.1).
   FREQUENCIES       = {
-    "each second"   => 315_360_000,
-    "each minute"   =>   5_256_000,
-    "each hour"     =>      87_600,
-    "each day"      =>       3_650,
-    "each week"     =>         520,
-    "each month"    =>         120,
-    "each quarter"  =>          40,
-    "each year"     =>          10,
-    "hourly"        =>      87_600,
-    "daily"         =>       3_650,
-    "weekly"        =>         520,
-    "fortnightly"   =>         260,
-    "monthly"       =>         120,
-    "quarterly"     =>          40,
-    "biannually"    =>          20,
-    "semiannual"    =>          20,
-    "semi-annual"   =>          20,
-    "semiannually"  =>          20,
-    "annual"        =>          10,
-    "annually"      =>          10,
-    "yearly"        =>          10,
-    "biennial"      =>           5,
-    "biennially"    =>           5,
-    "quadrennial"   =>           2.5,
-    "quadrennially" =>           2.5,
-    "decade"        =>           1,
-    "one time"      =>           0,
-    "one-time"      =>           0,
-    "other"         =>         nil,
-    "unknown"       =>         nil,
+    "each second"   => [315_360_000,   true ],
+    "each minute"   => [  5_256_000,   true ],
+    "hourly"        => [     87_600,   true ],
+    "each hour"     => [     87_600,   false],
+    "daily"         => [      3_650,   true ],
+    "each day"      => [      3_650,   false],
+    "weekly"        => [        520,   true ],
+    "each week"     => [        520,   false],
+    "fortnightly"   => [        260,   true ],
+    "monthly"       => [        120,   true ],
+    "each month"    => [        120,   false],
+    "quarterly"     => [         40,   true ],
+    "each quarter"  => [         40,   false],
+    "biannually"    => [         20,   true ],
+    "semiannual"    => [         20,   false],
+    "semi-annual"   => [         20,   false],
+    "semiannually"  => [         20,   false],
+    "annually"      => [         10,   true ],
+    "each year"     => [         10,   false],
+    "yearly"        => [         10,   false],
+    "annual"        => [         10,   false],
+    "biennially"    => [          5,   true ],
+    "biennial"      => [          5,   false],
+    "quadrennially" => [          2.5, true ],
+    "quadrennial"   => [          2.5, false],
+    "each decade"   => [          1,   true ],
+    "decade"        => [          1,   false],
+    "one time"      => [          0,   true ],
+    "one-time"      => [          0,   false],
+    "other"         => [        nil,   true ],
+    "unknown"       => [        nil,   true ],
   }
   
   def initialize(string)
@@ -72,16 +73,27 @@ class Frequency
   
   def per_decade
     value = FREQUENCIES[plain_text]
-    value ? value : nil
+    value ? value[0] : nil
   end
   
   def per_year
     value = FREQUENCIES[plain_text]
-    value ? (value / 10.0) : nil
+    value ? (value[0] / 10.0) : nil
   end
 
   def valid?
     FREQUENCIES.keys.include?(self.plain_text)
+  end
+
+  # A list suitable for a drop-down list
+  def self.list
+    list = []
+    sortable = FREQUENCIES.select { |k, v| v[0] } # not nil
+    sorted = sortable.sort_by { |k, v| -v[0] }
+    sorted.each { |k, v| list << k if v[1] }
+    nil_values = FREQUENCIES.select { |k, v| v[0].nil? }.sort_by { |k, v| k }
+    nil_values.each { |k, v| list << k }
+    list
   end
   
   protected
@@ -103,4 +115,3 @@ class Frequency
   end
 
 end
-
