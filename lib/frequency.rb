@@ -73,12 +73,16 @@ class Frequency
   
   def per_decade
     value = FREQUENCIES[plain_text]
-    value ? value[0] : nil
+    return nil unless value
+    return nil unless value[0]
+    value[0]
   end
   
   def per_year
     value = FREQUENCIES[plain_text]
-    value ? (value[0] / 10.0) : nil
+    return nil unless value
+    return nil unless value[0]
+    value[0] / 10.0
   end
 
   def valid?

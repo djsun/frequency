@@ -124,6 +124,58 @@ describe "Frequency" do
     end
   end
   
+  describe "other" do
+    before do
+      @freq = Frequency.new("other")
+    end
+
+    it "should be valid" do
+      @freq.plain_text.should == "other"
+    end
+  
+    it "should be valid" do
+      @freq.valid?.should be_true
+    end
+
+    it "#per_year should be correct" do
+      @freq.per_year.should == nil
+    end
+
+    it "#per_decade should be correct" do
+      @freq.per_decade.should == nil
+    end
+    
+    it "< should be undefined" do
+      lambda {
+        @freq.should < Frequency.new('monthly')
+      }.should raise_error(Frequency::Undefined)
+    end
+
+    it "<= should be undefined" do
+      lambda {
+        @freq.should <= Frequency.new('monthly')
+      }.should raise_error(Frequency::Undefined)
+    end
+    
+    it "== should be undefined" do
+      lambda {
+        @freq.should == Frequency.new('monthly')
+      }.should raise_error(Frequency::Undefined)
+    end
+
+    it ">= should be undefined" do
+      lambda {
+        @freq.should >= Frequency.new('monthly')
+      }.should raise_error(Frequency::Undefined)
+    end
+    
+    it "> should be undefined" do
+      lambda {
+        @freq.should > Frequency.new('monthly')
+      }.should raise_error(Frequency::Undefined)
+    end
+  end
+  
   # ---
   
   describe "list" do
